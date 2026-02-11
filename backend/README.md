@@ -12,6 +12,7 @@ Backend para autenticación y autorización con FastAPI y fastapi-users.
 - Migraciones con Alembic
 - Pydantic Settings para configuración
 - Rutas API con prefijo `/api/`
+- Seed automático de superusuario al iniciar la app
 
 ## Estructura de Proyecto
 
@@ -22,13 +23,15 @@ backend/
 │   ├── db.py                # Configuración de DB
 │   ├── core/
 │   │   ├── config.py        # Pydantic Settings
-│   │   └── security.py      # JWT utils
+│   │   ├── security.py      # JWT utils
+│   │   └── seed.py          # Seed de superusuario
 │   ├── models/
 │   │   └── user.py          # User model con role
 │   ├── auth/
 │   │   ├── auth.py          # JWT strategy
 │   │   ├── deps.py          # Dependencias de auth
 │   │   ├── manager.py       # UserManager
+│   │   ├── schemas.py       # Pydantic schemas
 │   │   └── router.py        # Rutas de auth
 │   ├── routes/
 │   │   └── protected.py     # Rutas protegidas
@@ -63,6 +66,14 @@ pip install -r requirements.txt
 cp .env.example .env
 # Editar .env con tus valores
 ```
+
+Para crear automáticamente un superusuario al iniciar la app, configura estas variables en `.env`:
+```
+FIRST_SUPERUSER_EMAIL=admin@example.com
+FIRST_SUPERUSER_PASSWORD=admin123
+```
+
+Esta funcionalidad es útil para desarrollo y testing. En producción, usa contraseñas seguras o no uses el seed.
 
 4. **Crear migración inicial**
 
@@ -152,3 +163,33 @@ curl http://localhost:8000/api/me \
 - El servidor se recarga automáticamente con `--reload`
 - La DB se crea en `backend/app.db`
 - Los logs de migraciones se guardan en consola
+
+## Superuser Seed
+
+Al iniciar la aplicación, si se configuran las variables de entorno `FIRST_SUPERUSER_EMAIL` y `FIRST_SUPERUSER_PASSWORD`, se creará automáticamente un superusuario con las siguientes características:
+- Email y password configurados en las variables
+- `is_superuser=True` - Acceso completo a la API
+- `is_verified=True` - Email verificado
+- `role=admin` - Rol administrativo
+- `is_active=True` - Cuenta activa
+
+El seed es idempotente: si el usuario ya existe, no se crea nuevamente.
+
+### Ejemplo de uso con superuser
+
+```bash
+# Login con el superuser configurado en .env
+curl -X POST http://localhost:8000/api/auth/jwt/login \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=admin@example.com&password=admin123"
+
+# La respuesta incluye el access_token
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer"
+}
+
+# Usar el token para acceder a endpoints protegidos
+curl http://localhost:8000/api/admin \
+  -H "Authorization: Bearer <token>"
+```
