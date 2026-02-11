@@ -13,6 +13,7 @@ Backend para autenticación y autorización con FastAPI y fastapi-users.
 - Pydantic Settings para configuración
 - Rutas API con prefijo `/api/`
 - Seed automático de superusuario al iniciar la app
+- CORS configurable desde variables de entorno
 
 ## Estructura de Proyecto
 
@@ -74,6 +75,27 @@ FIRST_SUPERUSER_PASSWORD=admin123
 ```
 
 Esta funcionalidad es útil para desarrollo y testing. En producción, usa contraseñas seguras o no uses el seed.
+
+**Configuración de CORS**
+
+El backend tiene soporte para CORS configurado desde variables de entorno. Por defecto, permite peticiones desde:
+- `http://localhost:5500`
+- `http://127.0.0.1:5500`
+
+Para agregar más orígenes permitidos, edita `.env`:
+```
+CORS_ORIGINS_RAW=http://localhost:5500,http://127.0.0.1:5500,https://mi-dominio.com
+```
+
+Para permitir todos los orígenes (no recomendado en producción):
+```
+CORS_ORIGINS_RAW=*
+```
+
+Otras opciones de CORS:
+- `CORS_ALLOW_CREDENTIALS=true` - Permite envío de cookies/headers de autenticación
+- `CORS_ALLOW_METHODS_RAW=*` - Métodos HTTP permitidos (GET, POST, PUT, DELETE, etc.)
+- `CORS_ALLOW_HEADERS_RAW=*` - Headers permitidos en las peticiones
 
 4. **Crear migración inicial**
 
@@ -192,4 +214,61 @@ curl -X POST http://localhost:8000/api/auth/jwt/login \
 # Usar el token para acceder a endpoints protegidos
 curl http://localhost:8000/api/admin \
   -H "Authorization: Bearer <token>"
+```
+
+## CORS Configuration
+
+El backend utiliza CORS (Cross-Origin Resource Sharing) para permitir peticiones desde orígenes específicos, como el frontend.
+
+### Configuración en .env
+
+```bash
+# Orígenes permitidos (separados por comas)
+CORS_ORIGINS_RAW=http://localhost:5500,http://127.0.0.1:5500
+
+# Permitir credenciales (cookies, auth headers)
+CORS_ALLOW_CREDENTIALS=true
+
+# Métodos HTTP permitidos
+CORS_ALLOW_METHODS_RAW=*
+
+# Headers permitidos
+CORS_ALLOW_HEADERS_RAW=*
+```
+
+### Ejemplos de Configuración
+
+**Para desarrollo con Live Server (puerto 5500):**
+```bash
+CORS_ORIGINS_RAW=http://localhost:5500,http://127.0.0.1:5500
+```
+
+**Para múltiples orígenes:**
+```bash
+CORS_ORIGINS_RAW=http://localhost:5500,https://dev.misitio.com,https://prod.misitio.com
+```
+
+**Para permitir todos los orígenes (⚠️ NO recomendado en producción):**
+```bash
+CORS_ORIGINS_RAW=*
+```
+
+**Para métodos específicos:**
+```bash
+CORS_ALLOW_METHODS_RAW=GET,POST,PUT,DELETE,PATCH
+```
+
+### Verificación de CORS
+
+Para verificar que CORS está funcionando correctamente:
+
+```bash
+curl -v http://localhost:8000/api/health \
+  -H "Origin: http://localhost:5500"
+```
+
+Deberías ver en los headers de respuesta:
+```
+access-control-allow-credentials: true
+access-control-allow-origin: http://localhost:5500
 ```
