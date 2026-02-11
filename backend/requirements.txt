@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+fastapi-users[sqlalchemy]
+pydantic-settings
+pyjwt
+passlib[bcrypt]
+alembic
+python-dotenv
+python-multipart
+aiosqlite
