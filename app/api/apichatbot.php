@@ -19,9 +19,6 @@ $input = json_decode(file_get_contents('php://input'), true);
 $userMessage = strtolower(trim($input['message'] ?? '')); 
 $context = $input['context'] ?? [];
 
-// Inicializar el modelo de servicio con la conexión a la BD
-$servicioModel = new ServicioModel();
-
 // Inicializamos la respuesta. Por defecto, asumimos que mostraremos los botones, a menos que una lógica posterior identifique un servicio específico.
 $response = [
     'message' => '¡Hola! Soy tu asistente. ¿En qué servicio estás interesado? Puedes seleccionar una de las opciones a continuación:',
