@@ -51,12 +51,12 @@
     </div>
 
     <div class="chat-footer p-4 border-t border-white/10 bg-slate-900/60 backdrop-blur-md shrink-0 flex justify-center">
-        <div class="relative flex items-center gap-2 w-full max-w-4xl">
-            <input type="text" id="user-input"
-                class="w-full bg-slate-800/50 text-white border border-slate-700 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-slate-500"
-                placeholder="Escribe tu mensaje...">
+        <div class="relative flex items-end gap-2 w-full max-w-4xl">
+            <textarea id="user-input"
+                class="w-full bg-slate-800/50 text-white border border-slate-700 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-slate-500 resize-none overflow-hidden min-h-[50px] max-h-[150px]"
+                placeholder="Escribe tu mensaje..." rows="1"></textarea>
             <button id="send-button"
-                class="absolute right-2 p-2 text-primary hover:text-white hover:bg-primary/20 rounded-lg transition-all">
+                class="absolute right-2 bottom-2 p-2 text-primary hover:text-white hover:bg-primary/20 rounded-lg transition-all">
                 <span class="material-symbols-outlined">send</span>
             </button>
         </div>
@@ -64,12 +64,30 @@
 </div>
 
 <button id="open-chat-button"
-    class="fixed bottom-6 right-6 w-16 h-16 bg-primary text-background-dark rounded-full shadow-[0_0_20px_rgba(13,185,242,0.4)] flex items-center justify-center z-[1000] hover:scale-110 transition-transform active:scale-95 group border-2 border-primary/20">
+    class="fixed bottom-6 right-6 w-16 h-16 bg-primary text-background-dark rounded-full shadow-[0_0_20px_rgba(13,185,242,0.4)] flex items-center justify-center z-[1000] hover:scale-110 transition-transform active:scale-95 group border-2 border-white/50 animate-glow">
     <span class="material-symbols-outlined text-3xl transition-transform group-hover:rotate-12">forum</span>
     <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-background-dark rounded-full"></span>
 </button>
 
 <style>
+    @keyframes glow-pulse {
+        0% {
+            box-shadow: 0 0 5px rgba(13, 185, 242, 0.4), 0 0 10px rgba(13, 185, 242, 0.2);
+        }
+
+        50% {
+            box-shadow: 0 0 20px rgba(13, 185, 242, 0.8), 0 0 30px rgba(13, 185, 242, 0.4);
+        }
+
+        100% {
+            box-shadow: 0 0 5px rgba(13, 185, 242, 0.4), 0 0 10px rgba(13, 185, 242, 0.2);
+        }
+    }
+
+    .animate-glow {
+        animation: glow-pulse 2s infinite ease-in-out;
+    }
+
     #chatbot-widget {
         position: fixed;
         bottom: 100px;
