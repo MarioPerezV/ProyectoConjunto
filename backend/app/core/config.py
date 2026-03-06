@@ -5,13 +5,9 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    database_url: str
-    secret_key: str
-    jwt_algorithm: str = "HS256"
-    jwt_access_token_expire_minutes: int = 30
-
-    first_superuser_email: str | None = None
-    first_superuser_password: str | None = None
+    database_url: str = "sqlite+aiosqlite:///./app.db"
+    gemini_api_key: str
+    chatbot_prompt: str = "Eres un consultor web amigable y experto. Tu objetivo es ayudar a los clientes con sus dudas sobre desarrollo web, diseño y estrategia digital de manera profesional pero cercana."
 
     cors_origins_raw: str = "http://localhost:5500,http://127.0.0.1:5500"
     cors_allow_credentials: bool = True
@@ -38,6 +34,7 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+        extra = "ignore"
 
 
 settings = Settings()

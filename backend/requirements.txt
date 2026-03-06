@@ -1,11 +1,12 @@
 fastapi
 uvicorn[standard]
-sqlalchemy
-fastapi-users[sqlalchemy]
 pydantic-settings
-pyjwt
-passlib[bcrypt]
-alembic
 python-dotenv
 python-multipart
+sqlalchemy
+alembic
 aiosqlite
+langchain
+langgraph
+langchain-google-genai
+google-genai

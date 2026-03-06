@@ -1,23 +1,9 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from app.core.config import settings
-from app.core.seed import create_superuser_if_not_exists
-from app.db import engine
-from app.auth.router import auth_router
-from app.routes.protected import protected_router
+from app.routes.chat import chat_router
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await create_superuser_if_not_exists()
-    yield
-    await engine.dispose()
-
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(title="Web Consultancy Chatbot API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,14 +13,11 @@ app.add_middleware(
     allow_headers=settings.cors_allow_headers,
 )
 
-app.include_router(auth_router, prefix="/api")
-app.include_router(protected_router, prefix="/api")
-
+app.include_router(chat_router, prefix="/api")
 
 @app.get("/")
 async def root():
-    return {"message": "API is running"}
-
+    return {"message": "Web Consultancy Chatbot API is running"}
 
 @app.get("/health")
 async def health():
