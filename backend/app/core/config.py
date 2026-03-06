@@ -7,7 +7,6 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     database_url: str = "sqlite+aiosqlite:///./app.db"
     gemini_api_key: str
-    chatbot_prompt: str = "Eres un consultor web amigable y experto. Tu objetivo es ayudar a los clientes con sus dudas sobre desarrollo web, diseño y estrategia digital de manera profesional pero cercana."
 
     cors_origins_raw: str = "http://localhost:5500,http://127.0.0.1:5500"
     cors_allow_credentials: bool = True

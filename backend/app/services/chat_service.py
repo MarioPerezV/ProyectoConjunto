@@ -8,6 +8,7 @@ from app.core.config import settings
 from app.db import async_session_maker
 from app.models.chat_message import ChatMessage
 from sqlalchemy import select
+from app.core.prompts import CHATBOT_SYSTEM_PROMPT
 
 # Define the state of the graph
 class State(TypedDict):
@@ -29,7 +30,7 @@ class ChatService:
         async def call_model(state: State):
             # Check if we need to prepend the system prompt
             if not any(isinstance(m, SystemMessage) for m in state["messages"]):
-                messages = [SystemMessage(content=settings.chatbot_prompt)] + state["messages"]
+                messages = [SystemMessage(content=CHATBOT_SYSTEM_PROMPT)] + state["messages"]
             else:
                 messages = state["messages"]
             
