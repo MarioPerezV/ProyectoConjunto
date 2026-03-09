@@ -8,7 +8,7 @@ CONDICIONES:
 // Incluir tu archivo de configuración (para BASE_URL, UPLOAD_URL_BASE, etc.)
 // y tu modelo de Artículos. Ajusta las rutas según tu estructura.
 require_once __DIR__ . '/../config/bootstrap.php';
-require_once __DIR__ . '/../modelos/ServicioModel.php'; // LINEA 11
+require_once __DIR__ . '/../modelos/ServicioModel.php'; 
 require_once __DIR__ . '/../modelos/ChatbotModel.php';
 
 // Asegura que la respuesta sea JSON

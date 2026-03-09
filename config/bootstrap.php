@@ -49,11 +49,9 @@ else {
 $baseUrl = $_ENV['BASE_URL'] ?? 'https://agenciagaby.com/vm';
 define('BASE_URL', rtrim($baseUrl, '/')); // Asegura que no tenga slash final extra
 define('CHATBOT_API_URL', $_ENV['CHATBOT_API_URL'] ?? 'http://localhost:8000/api/chat');
-define('ASSETS_PATH', 'assets');
+define('ASSETS_PATH', BASE_URL . 'frontend/assets');
 
-define('VIEW_PATH', APP_ROOT . '/vistas'); // Ruta centralizada a las vistas
-define('UPLOAD_PATH', '/home2/mariope1/public_html/assets/uploads/articulos/'); // ¿línea obsoleta?
-define('UPLOAD_URL_BASE', BASE_URL . '/assets/uploads/articulos/'); // Refactorizado para usar BASE_URL
+define('VIEW_PATH', BASE_URL . 'frontend/vistas'); // Ruta centralizada a las vistas
 
 setlocale(LC_NUMERIC, 'es_ES.utf8mb4');
 

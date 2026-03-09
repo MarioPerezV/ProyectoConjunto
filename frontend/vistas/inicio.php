@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DevPortfolio | Desarrollador de Software de Alta Gama</title>
+    <title>Maquina Virtual | Desarrollador de Software de Alta Gama</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
@@ -58,7 +58,7 @@
                 <div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-background-dark">
                     <span class="material-symbols-outlined font-bold">code</span>
                 </div>
-                <span class="text-xl font-bold tracking-tight text-white">DevPortfolio</span>
+                <h1 class="text-white">MAQUINA<span class="text-xl font-bold tracking-tight text-primary"> VIRTUAL</span> spa</h1>
             </div>
             <div class="hidden md:flex items-center gap-10">
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#home">Inicio</a>
@@ -86,10 +86,10 @@
                     Disponible para proyectos
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black text-white leading-[1.1] mb-8">
-                    Construyendo <span class="text-primary">experiencias</span> digitales que importan
+                    Construyendo <span class="text-primary">ACTIVOS</span> digitales
                 </h1>
                 <p class="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-                    Somos un equipo de desarrollo full-stack especializado en aplicaciones web escalables e interfaces de usuario intuitivas que cierran la brecha entre la lógica compleja y un diseño hermoso.
+                    Somos un equipo de desarrollo full-stack y automatización IA, especializado en aplicaciones web escalables e interfaces de usuario intuitivas que cierran la brecha entre la lógica compleja y un diseño atractivo.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                     <a class="w-full sm:w-auto px-8 py-4 bg-primary text-background-dark rounded font-bold text-lg hover:shadow-[0_0_20px_rgba(13,185,242,0.4)] transition-all" href="#projects">

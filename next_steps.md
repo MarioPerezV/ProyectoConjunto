@@ -7,36 +7,30 @@ Mover los archivos HTML a una carpeta `frontend/`:
 
 ```
 ProyectoConjunto/
+├── index.php  -- Rutas
+├── api/
 ├── backend/
 │   └── (ya está listo)
+├── config/
 └── frontend/
-    ├── index.html
-    ├── login.html
-    ├── dashboard.html
-    ├── css/
-    │   └── styles.css (si tienes)
-    └── js/
-        └── auth.js (crear este archivo)
-```
+    ├── vistas/
+    │   ├── inicio.php
+    │   └── chatbot.php
+    └── assets/
+		├── css/
+		│   └── styles.css
+		└── js/
+			└── auth.js
+---
 
-**Acción:** Crea la carpeta `frontend/` y mueve los 3 archivos HTML ahí.
+### 2. Servir los Archivos PHP
+Utilizamos el hosting de AgenciaGaby para el frontend con su correspondiente base de datos
 
 ---
 
-### 2. Servir los Archivos HTML
-Necesitas un servidor local para servir tus archivos HTML. Usa **Live Server** (extensión de VS Code):
+#### 3. No utilzaremos Login con la API de momento
 
-1. Instala la extensión "Live Server" en VS Code
-2. Click derecho en `index.html` → "Open with Live Server"
-3. Se abrirá en `http://127.0.0.1:5500` o similar
-
-**Importante:** Anota el puerto que usa (probablemente 5500).
-
----
-
-### 3. Conectar Login con la API
-
-#### 3.1 Modificar `login.html`
+<!-- #### 3.1 Modificar `login.html`
 Agrega un `id` a tu formulario y campos:
 
 ```html
@@ -94,10 +88,10 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
   }
 });
 ```
-
+ -->
 ---
 
-### 4. Proteger el Dashboard
+### 4. Proteger el Dashboard -- NO LO UTILIZAREMOS DE MOMENTO
 
 #### 4.1 Modificar `dashboard.html`
 Agrega esto al inicio del archivo (dentro de `<head>` o al inicio del `<body>`):
@@ -176,7 +170,6 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
 
 // Cargar info al iniciar
 loadUserInfo();
-```
 
 ---
 
