@@ -47,6 +47,18 @@
             border-color: #0db9f2;
             background-color: rgba(13, 185, 242, 0.05);
         }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
     </style>
 </head>
 
@@ -110,7 +122,100 @@
             </div>
         </div>
     </section>
+    <!-- Projects Section -->
+    <section class="py-24" id="projects">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Portafolio</h2>
+                    <h3 class="text-3xl lg:text-4xl font-extrabold text-white">Proyectos Destacados</h3>
+                </div>
+                <p class="text-slate-400 max-w-md">
+                    Una selección de nuestro trabajo más reciente, que abarca desde sistemas empresariales complejos hasta elegantes aplicaciones para consumidores.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">                
+                <!-- Project Card 1: MitigaRiesgo.cl -->
+                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col" 
+                    data-title="MitigaRiesgo.cl"
+                    data-description="Consultoría especializada en la implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST). Ayudamos a las empresas a cumplir con la Ley 16.744, reduciendo la accidentabilidad y mejorando la productividad."
+                    data-image="https://images.unsplash.com/photo-1581092921461-e760b1e393ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-tags='["Consultoría", "SGSST", "WordPress"]'
+                    data-url="https://mitigariesgo.cl">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img alt="Proyecto MitigaRiesgo.cl" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1581092921461-e760b1e393ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Consultoría</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">SGSST</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">MitigaRiesgo.cl</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">
+                            Consultoría en implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST) para empresas.
+                        </p>
+                        <button class="open-project-modal inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all text-left">
+                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
 
+                <!-- Project Card 2: AgenciaGaby.com -->
+                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col"
+                    data-title="AgenciaGaby.com"
+                    data-description="Agencia de Diseño Web con Sistemas de Gestión en tiempo real que potencia la presencia online de negocios y emprendimientos."
+                    data-image="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-tags='["Sistemas de Gestión", "Desarrollo Web"]'
+                    data-url="https://agenciagaby.com"
+                    data-video-url="https://www.youtube.com/embed/EHNSFUIPL_4">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img alt="Proyecto AgenciaGaby.com" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Sistemas de Gestión</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Desarrollo Web</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">AgenciaGaby.com</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">
+                            Agencia de Diseño Web con Sistemas de Gestión en tiempo real que potencia la presencia online de negocios y emprendimientos.
+                        </p>
+                        <button class="open-project-modal inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all text-left">
+                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: LaSerenaDenuncia.cl -->
+                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col"
+                    data-title="LaSerenaDenuncia.cl"
+                    data-description="Plataforma ciudadana para la comuna de La Serena. Permite a los vecinos reportar incidencias y problemas en la vía pública, fomentando la participación y colaborando con la gestión municipal para una ciudad más segura y limpia."
+                    data-image="https://images.unsplash.com/photo-1549877452-9c3e87a491a1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    data-tags='["Plataforma Ciudadana", "Participación", "Laravel"]'
+                    data-url="https://laserenadenuncia.cl">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img alt="Proyecto LaSerenaDenuncia.cl" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1549877452-9c3e87a491a1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Plataforma Ciudadana</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Laravel</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">LaSerenaDenuncia.cl</h4>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">
+                            Plataforma ciudadana para reportar incidencias en La Serena, fomentando la participación y mejorando la gestión municipal.
+                        </p>
+                        <button class="open-project-modal inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all text-left">
+                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Skills Section -->
     <section class="py-24 bg-background-dark/50 border-y border-white/5" id="skills">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -150,83 +255,6 @@
                     </div>
                     <span class="text-white font-semibold">AWS</span>
                     <p class="text-slate-500 text-xs mt-2">Infraestructura</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="py-24" id="projects">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
-                <div>
-                    <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Portafolio</h2>
-                    <h3 class="text-3xl lg:text-4xl font-extrabold text-white">Proyectos Destacados</h3>
-                </div>
-                <p class="text-slate-400 max-w-md">
-                    Una selección de mi trabajo más reciente, que abarca desde sistemas empresariales complejos hasta elegantes aplicaciones para consumidores.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col">
-                    <div class="aspect-video relative overflow-hidden">
-                        <img alt="Interfaz de panel de control para una plataforma de análisis de datos" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" data-alt="Dashboard interface for a data analytics platform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB88GwAREU8YLl0DV1-kqWrEz7d9Y0zkDg-JyQ_7SvldCPeiATQ1TIp8lfDCFqAM20Vrv33de9TzfSGM1ydLrZB_hcMeINYmaT027cLoglxNLSsB8uiMmf-HQBm0vBPmzNpPTGXJeAQYY659vV8NgRPTgl-di_evMUIQWE2sbUO96AyOQC_M1k_LyMnsnh8QJAzuvz4QQ_4iA4Awgkf6QWoyGanieLsEavS0szwxiXr41hnQtxCPk2khcqs0BTNv-HP7VSZGFRrbg" />
-                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex gap-2 mb-4">
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">React</span>
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Node</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Nebula Analytics</h4>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">
-                            Una plataforma de visualización de datos de alto rendimiento que procesa más de 1 millón de eventos por segundo con bucles de retroalimentación en tiempo real.
-                        </p>
-                        <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all" href="#">
-                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col">
-                    <div class="aspect-video relative overflow-hidden">
-                        <img alt="Aplicación móvil que muestra una interfaz de usuario de comercio electrónico moderna" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" data-alt="Mobile application showing modern e-commerce UI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdPv0-TvPezYQMnnTNZWnKvAl4XzwzOYUoc4vIg9kO3LsK6TeMgFe6e4DNxtxbcI1JHK-qgAd97Wx4WSw0rScD7rnOCSC3rYQMTIUNegBwCj8cTB-G7XqLsdsssAgTpBsmqFy5wsYu8tTSZZ4siIYkFsuxjuYcLh61isUFSI-Vz9X-xa4F0Uo1s8VIf4sSctk6Q0j__G823nBFH9GM33M3ue2BBSProXA0J5s4iZ8ytHZ7eQ_CJ7fC0BipjYZyaf20ugUhxCc9yg" />
-                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex gap-2 mb-4">
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">E-Commerce</span>
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">NextJS</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Storefront Engine</h4>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">
-                            Solución de comercio headless moderna creada para escalar, con cargas de página en menos de un segundo e integración perfecta con Stripe.
-                        </p>
-                        <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all" href="#">
-                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project Card 3 -->
-                <div class="group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col">
-                    <div class="aspect-video relative overflow-hidden">
-                        <img alt="Fragmentos de código sobre un fondo oscuro y limpio" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" data-alt="Code snippets on a clean dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvWO7NzRoMGvwqxMX36VwO0V6BXOcPE89aaKBk3dyHypsg6R708lt5ixtUgJzRgPLc9gyuUoU-_EMceDJ_gz3WX6j4WEv3UDPKl92_62tTOP3YzaedH9aMhLYuJe7VEJsAzey1BVn1qNRZ82BpsPenznkXe4UI7CB9taODaui_lp2zaIjfKDe4n92577QLFdWqJ3KUWUJ_RRZF0gHFCJsJpGteALAw5pWY4NaFgP3hLe9t8etL8iGddlEyspq-pGOWCQv0ft1J7w" />
-                        <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex gap-2 mb-4">
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">AWS</span>
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">DevOps</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Infrastructure Automator</h4>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">
-                            Herramienta CLI personalizada para automatizar la implementación de infraestructura de AWS, reduciendo el tiempo de aprovisionamiento en un 75% para los equipos de ingeniería.
-                        </p>
-                        <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all" href="#">
-                            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -274,7 +302,111 @@
             </div>
         </div>
     </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[1100] hidden items-center justify-center p-4" style="display: none;">
+        <div id="project-modal-content" class="bg-slate-900/95 border border-primary/20 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col animate-fade-in-up">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b border-slate-800 shrink-0">
+                <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+                <button id="close-modal-button" class="p-2 text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-grow">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="aspect-video">
+                        <div id="modal-media-image" class="w-full h-full">
+                            <img id="modal-image" src="" alt="Vista previa del proyecto" class="rounded-lg w-full h-full object-cover border border-slate-700">
+                        </div>
+                        <div id="modal-media-video" class="w-full h-full hidden">
+                            <iframe id="modal-video" class="rounded-lg w-full h-full border border-slate-700" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div id="modal-tags" class="flex flex-wrap gap-2 mb-4">
+                            <!-- Tags will be injected here -->
+                        </div>
+                        <p id="modal-description" class="text-slate-300 mb-6 flex-grow"></p>
+                        <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-background-dark rounded font-bold hover:shadow-[0_0_20px_rgba(13,185,242,0.4)] transition-all">
+                            Visitar Sitio Web
+                            <span class="material-symbols-outlined text-base">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php require 'chatbot.php'; ?>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('project-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const openModalButtons = document.querySelectorAll('.open-project-modal');
+        if (!modal || !closeModalButton || openModalButtons.length === 0) return;
+
+        const modalTitle = document.getElementById('modal-title');        
+        const modalDescription = document.getElementById('modal-description');        
+        const modalTags = document.getElementById('modal-tags');        
+        const modalUrl = document.getElementById('modal-url');
+        const modalImageContainer = document.getElementById('modal-media-image');
+        const modalImage = document.getElementById('modal-image');
+        const modalVideoContainer = document.getElementById('modal-media-video');
+        const modalVideo = document.getElementById('modal-video');
+
+        const openModal = (projectCard) => {
+            const data = projectCard.dataset;
+            modalTitle.textContent = data.title;
+            modalDescription.textContent = data.description;
+            modalUrl.href = data.url;
+
+            if (data.videoUrl) {
+                modalImageContainer.classList.add('hidden');
+                modalVideoContainer.classList.remove('hidden');
+                modalVideo.src = data.videoUrl;
+            } else {
+                modalVideoContainer.classList.add('hidden');
+                modalImageContainer.classList.remove('hidden');
+                modalImage.src = data.image;
+                modalImage.alt = `Vista previa del proyecto ${data.title}`;
+            }
+
+            modalTags.innerHTML = '';
+            try {
+                JSON.parse(data.tags).forEach(tag => {
+                    const tagEl = document.createElement('span');
+                    tagEl.className = 'text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter';
+                    tagEl.textContent = tag;
+                    modalTags.appendChild(tagEl);
+                });
+            } catch (e) { console.error('Error parsing tags JSON:', e); }
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            // Detener el video al cerrar el modal para evitar que se reproduzca en segundo plano
+            modalVideo.src = '';
+        };
+
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectCard = button.closest('.project-card');
+                if (projectCard) openModal(projectCard);
+            });
+        });
+
+        closeModalButton.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
+    });
+    </script>
 </body>
 
 </html>

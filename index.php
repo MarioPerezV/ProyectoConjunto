@@ -1,6 +1,6 @@
 <?php
 // Cargar todas las configuraciones básicas
-require_once __DIR__ . '/app/config/bootstrap.php';
+require_once __DIR__ . '/config/bootstrap.php';
 
 // Router simple
 $action = $_GET['action'] ?? 'index';

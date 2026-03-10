@@ -46,12 +46,12 @@ else {
 
 // 4. Constantes de RUTA WEB (Ahora dinámicas)
 // Se usa $_ENV['BASE_URL'] si existe, sino fallback a producción
-$baseUrl = $_ENV['BASE_URL'] ?? 'https://agenciagaby.com/vm';
+$baseUrl = $_ENV['BASE_URL'] ?? 'https://agenciagaby.com/mv';
 define('BASE_URL', rtrim($baseUrl, '/')); // Asegura que no tenga slash final extra
 define('CHATBOT_API_URL', $_ENV['CHATBOT_API_URL'] ?? 'http://localhost:8000/api/chat');
-define('ASSETS_PATH', BASE_URL . 'frontend/assets');
+define('ASSETS_PATH', BASE_URL . '/frontend/assets');
 
-define('VIEW_PATH', BASE_URL . 'frontend/vistas'); // Ruta centralizada a las vistas
+define('VIEW_PATH', APP_ROOT . '/frontend/vistas'); // Ruta centralizada a las vistas
 
 setlocale(LC_NUMERIC, 'es_ES.utf8mb4');
 
