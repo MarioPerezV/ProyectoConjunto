@@ -18,7 +18,7 @@ define('SITE_ROOT', realpath(dirname(APP_ROOT))); // Ruta al directorio raíz ab
 // require_once SITE_ROOT . '/vendor/autoload.php';
 
 // 3. Cargar las variables de entorno desde el archivo .env
-$envFile = SITE_ROOT . '/.env';
+$envFile = APP_ROOT . '/app/.env';
 if (file_exists($envFile)) {
     try {
         // Primero intentamos cargar con putenv si es necesario para $_ENV

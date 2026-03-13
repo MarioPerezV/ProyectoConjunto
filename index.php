@@ -22,6 +22,10 @@ switch ($action) {
         include VIEW_PATH . '/privacidad.php';
         break;
 
+    case 'consulta':
+        include VIEW_PATH . '/consulta.php';
+        break;
+
     default:
         // Cargar datos para la vista de inicio por defecto
         include VIEW_PATH . '/inicio.php';

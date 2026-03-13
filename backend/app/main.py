@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.routes.chat import chat_router
+from app.routes.consultation import consultation_router
 
 app = FastAPI(title="Web Consultancy Chatbot API")
 
@@ -14,6 +15,7 @@ app.add_middleware(
 )
 
 app.include_router(chat_router, prefix="/api")
+app.include_router(consultation_router, prefix="/api/consultation")
 
 @app.get("/")
 async def root():

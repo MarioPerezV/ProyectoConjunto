@@ -10,6 +10,9 @@ RUN a2enmod rewrite
 # Configure PHP settings to allow $_ENV to be populated from the system
 RUN echo "variables_order = \"EGPCS\"" >> /usr/local/etc/php/conf.d/custom-php.ini
 
+# Enable AllowOverride All for .htaccess
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
 # Set the working directory
 WORKDIR /var/www/html
 
