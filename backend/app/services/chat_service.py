@@ -16,13 +16,31 @@ class State(TypedDict):
 
 class ChatService:
     def __init__(self):
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash-lite",
-            google_api_key=settings.gemini_api_key,
-            temperature=0.7
-        )
+        self.llms = [
+            ChatGoogleGenerativeAI(
+                model="gemini-2.5-flash-lite",
+                google_api_key=key,
+
+                temperature=0.7
+            ) for key in settings.gemini_api_keys_list
+        ]
+        if not self.llms:
+             # Fallback or error if no keys are provided
+             print("WARNING: No Gemini API keys found in settings.gemini_api_keys")
+        else:
+             print(f"INFO: Loaded {len(self.llms)} Gemini API keys for rotation")
+
+        
+        self._current_llm_index = 0
         self.workflow = self._create_workflow()
         self.app = self.workflow.compile()
+
+    def _get_llm(self):
+        if not self.llms:
+            raise ValueError("No Gemini API keys configured.")
+        llm = self.llms[self._current_llm_index]
+        self._current_llm_index = (self._current_llm_index + 1) % len(self.llms)
+        return llm
 
     def _create_workflow(self):
         workflow = StateGraph(State)
@@ -34,7 +52,8 @@ class ChatService:
             else:
                 messages = state["messages"]
             
-            response = await self.llm.ainvoke(messages)
+            llm = self._get_llm()
+            response = await llm.ainvoke(messages)
             return {"messages": [response]}
 
         workflow.add_node("agent", call_model)

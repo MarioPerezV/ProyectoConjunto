@@ -1,12 +1,30 @@
 from typing import Any
 
 from pydantic import field_validator
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore",
+        env_prefix="",
+        case_sensitive=False
+    )
+
     database_url: str = "sqlite+aiosqlite:///./app.db"
-    gemini_api_key: str
+    
+    # We load this from GEMINI_API_KEYS environment variable
+    gemini_api_keys: str = ""
+
+    @property
+    def gemini_api_keys_list(self) -> list[str]:
+        if not self.gemini_api_keys:
+            # Fallback for older env var name if necessary or just empty
+            return []
+        return [k.strip() for k in self.gemini_api_keys.split(",") if k.strip()]
+
 
     cors_origins_raw: str = "http://localhost:5500,http://127.0.0.1:5500"
     cors_allow_credentials: bool = True
@@ -31,9 +49,6 @@ class Settings(BaseSettings):
             return ["*"]
         return [header.strip() for header in self.cors_allow_headers_raw.split(",")]
 
-    class Config:
-        env_file = ".env"
-        extra = "ignore"
 
 
 settings = Settings()
