@@ -76,6 +76,7 @@
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#home">Inicio</a>
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#projects">Proyectos</a>
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#skills">Habilidades</a>
+                <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="<?= BASE_URL ?>/consulta">Consulta</a>
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#contact">Contacto</a>
             </div>
             <button class="bg-primary text-background-dark px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all">
