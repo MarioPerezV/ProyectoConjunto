@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from typing import Any
 from app.services.consultation_service import consultation_service
 
 consultation_router = APIRouter()
@@ -18,7 +19,7 @@ class ConsultationResponse(BaseModel):
 
 
 class ReportResponse(BaseModel):
-    report: str
+    report: dict[str, Any]
     session_id: str
 
 
@@ -62,3 +63,4 @@ async def get_report(session_id: str):
         return ReportResponse(report=report, session_id=session_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+

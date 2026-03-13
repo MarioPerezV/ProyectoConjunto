@@ -123,12 +123,14 @@ class ConsultationService:
             "turn": turns + 1,
         }
 
-    async def generate_report(self, session_id: str) -> str:
+    async def generate_report(self, session_id: str) -> dict:
         """Generate a structured business needs report from the consultation history."""
+        import json, re
+
         history = await self.get_history(session_id)
 
         if not history:
-            return "No hay suficiente información para generar un informe."
+            return {"error": "No hay suficiente información para generar un informe."}
 
         # Build a full conversation transcript
         transcript_lines = []
@@ -140,39 +142,48 @@ class ConsultationService:
         transcript = "\n".join(transcript_lines)
 
         report_prompt = f"""
-Eres un analista de negocios senior de Maquina Virtual SPA. Basándote en la siguiente conversación de consulta, genera un informe estructurado y profesional que no solo analice al negocio, sino que también posicione a Maquina Virtual SPA como el aliado ideal para ejecutar estas soluciones.
+Eres un analista de negocios senior de Maquina Virtual SPA. Basándote en la conversación de consulta, genera un informe estructurado en formato JSON estricto.
 
 CONVERSACIÓN:
 {transcript}
 
-FORMATO DEL INFORME (usa exactamente estas secciones):
-1. DATOS DE LA EMPRESA
-   - Nombre, Rubro, Tamaño, Antigüedad
+Responde ÚNICAMENTE con un objeto JSON válido (sin texto antes ni después, sin markdown, sin bloques de código). El objeto debe tener exactamente estos campos:
 
-2. SITUACIÓN ACTUAL
-   Descripción objetiva de la situación actual del negocio.
+{{
+  "empresa": {{
+    "nombre": "...",
+    "rubro": "...",
+    "tamano": "...",
+    "antiguedad": "..."
+  }},
+  "situacion_actual": "Descripción objetiva y concisa de la situación actual del negocio.",
+  "necesidad_principal": "La necesidad o problema más importante que quieren resolver.",
+  "desafios": ["Desafío 1", "Desafío 2", "Desafío 3"],
+  "oportunidades": [
+    {{"titulo": "Área de Oportunidad 1", "descripcion": "..."}},
+    {{"titulo": "Área de Oportunidad 2", "descripcion": "..."}},
+    {{"titulo": "Área de Oportunidad 3", "descripcion": "..."}}
+  ],
+  "soluciones_mv": "Párrafo explicando cómo Maquina Virtual SPA puede ayudar específicamente a este cliente. Menciona experiencia en software a medida, agentes de IA y automatización. Invita a una consultoría técnica gratuita.",
+  "proximos_pasos": ["Paso concreto 1", "Paso concreto 2", "Paso concreto 3"]
+}}
 
-3. NECESIDAD PRINCIPAL
-   La necesidad o problema más importante que quieren resolver.
-
-4. DESAFÍOS IDENTIFICADOS
-   Los desafíos clave mencionados.
-
-5. ÁREAS DE OPORTUNIDAD
-   Identifica 2-3 áreas donde la tecnología (Software, IA, Automatización) transformaría el negocio.
-
-6. SOLUCIONES MAQUINA VIRTUAL SPA
-   Explica cómo Maquina Virtual SPA puede ayudar específicamente en este caso. Menciona nuestra experiencia en desarrollo de software a medida, integración de agentes de IA y optimización de procesos. Invita al usuario a contactarnos para una consultoría técnica gratuita.
-
-7. PRÓXIMOS PASOS SUGERIDOS
-   Recomendaciones concretas y accionables.
-
-Escribe el informe de forma clara, concisa y muy profesional. Solo texto plano, sin markdown ni asteriscos. Asegúrate de que el tono sea inspirador y de confianza. No hagas un informe demasiado largo o puede que no lo lean. Ve al grano y al dolor del cliente.
+El tono debe ser profesional, inspirador y de confianza. Sé conciso, ve al grano y al dolor del cliente.
 """
 
         llm = self._get_llm()
         report_result = await llm.ainvoke([HumanMessage(content=report_prompt)])
-        return report_result.content
+        raw = report_result.content.strip()
+
+        # Strip markdown code fences if the model adds them
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw.strip())
+
+        try:
+            return json.loads(raw)
+        except (json.JSONDecodeError, ValueError):
+            # Fallback: return raw text in a plain structure
+            return {"raw": raw}
 
 
 consultation_service = ConsultationService()

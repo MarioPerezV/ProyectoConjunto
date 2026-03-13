@@ -76,13 +76,6 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
         .step-dot.done    { background: #22d3ee; }
         .step-dot.pending { background: #334155; }
 
-        /* --- Report panel --- */
-        #report-panel {
-            display: none;
-            animation: messageFadeIn 0.5s ease-out forwards;
-        }
-        #report-panel.visible { display: block; }
-
         /* --- Chat Scrollbar --- */
         #chat-body::-webkit-scrollbar { width: 5px; }
         #chat-body::-webkit-scrollbar-track { background: transparent; }
@@ -90,9 +83,142 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
         #chat-body::-webkit-scrollbar-thumb:hover { background: rgba(13,185,242,0.4); }
 
         /* --- Report Scrollbar --- */
-        #report-text::-webkit-scrollbar { width: 5px; }
-        #report-text::-webkit-scrollbar-track { background: transparent; }
-        #report-text::-webkit-scrollbar-thumb { background: rgba(13,185,242,0.2); border-radius:10px; }
+        #report-body::-webkit-scrollbar { width: 5px; }
+        #report-body::-webkit-scrollbar-track { background: transparent; }
+        #report-body::-webkit-scrollbar-thumb { background: rgba(13,185,242,0.2); border-radius:10px; }
+
+        /* --- Structured Report Sections --- */
+        .report-section {
+            border-radius: 12px;
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            margin-bottom: 16px;
+            animation: messageFadeIn 0.4s ease-out forwards;
+        }
+        .report-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #0db9f2;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(13,185,242,0.15);
+        }
+        .report-section-title .material-symbols-outlined { font-size: 1.1rem; }
+        .report-empresa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .report-empresa-item {
+            background: rgba(13,185,242,0.06);
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+        .report-empresa-item-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+        .report-empresa-item-value {
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+        .report-text-content {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            line-height: 1.75;
+        }
+        .report-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .report-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        .report-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #0db9f2;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .report-oportunidad-card {
+            background: linear-gradient(135deg, rgba(13,185,242,0.06) 0%, rgba(13,185,242,0.02) 100%);
+            border: 1px solid rgba(13,185,242,0.12);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+        }
+        .report-oportunidad-card:last-child { margin-bottom: 0; }
+        .report-oportunidad-card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+        .report-oportunidad-card-desc {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.65;
+        }
+        .report-mv-box {
+            background: linear-gradient(135deg, rgba(13,185,242,0.1) 0%, rgba(13,185,242,0.03) 100%);
+            border: 1px solid rgba(13,185,242,0.25);
+            border-radius: 10px;
+            padding: 18px 20px;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+        .report-pasos-list { counter-reset: pasos; }
+        .report-pasos-list li {
+            counter-increment: pasos;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .report-pasos-list li::before {
+            content: counter(pasos);
+            background: rgba(13,185,242,0.15);
+            color: #0db9f2;
+            font-size: 0.7rem;
+            font-weight: 800;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .report-raw {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            white-space: pre-wrap;
+            line-height: 1.7;
+        }
 
         /* Generate report button glow */
         @keyframes glow-pulse {
@@ -251,8 +377,8 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             </div>
             
             <!-- Modal Body -->
-            <div class="flex-1 overflow-y-auto p-6 md:p-8">
-                <pre id="report-text" class="text-slate-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap font-sans"></pre>
+            <div id="report-body" class="flex-1 overflow-y-auto p-6 md:p-8">
+                <!-- Sections injected by JS -->
             </div>
 
             <!-- Modal Footer -->
@@ -297,7 +423,7 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
         const generateBtn   = document.getElementById('generate-report-btn');
         const reportModal   = document.getElementById('report-modal');
         const closeModal    = document.getElementById('close-modal');
-        const reportText    = document.getElementById('report-text');
+        const reportBody    = document.getElementById('report-body');
         const reportLoading = document.getElementById('report-loading');
         const emailBtn      = document.getElementById('email-btn');
         const restartBtn    = document.getElementById('restart-btn');
@@ -432,20 +558,100 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
         }
 
         // ---- Generate report ----
+        function renderSection(icon, title, contentHtml) {
+            return `
+            <div class="report-section">
+                <div class="report-section-title">
+                    <span class="material-symbols-outlined">${icon}</span>
+                    ${title}
+                </div>
+                ${contentHtml}
+            </div>`;
+        }
+
+        function renderReport(r) {
+            if (!r) { reportBody.innerHTML = '<p class="text-slate-400 text-sm">No se pudo generar el informe.</p>'; return; }
+
+            // Fallback for raw text (if LLM did not return valid JSON)
+            if (r.raw) {
+                reportBody.innerHTML = renderSection('description', 'Informe', `<p class="report-raw">${r.raw}</p>`);
+                return;
+            }
+
+            let html = '';
+
+            // 1. Empresa
+            if (r.empresa) {
+                const e = r.empresa;
+                const fields = [
+                    { label: 'Nombre', value: e.nombre },
+                    { label: 'Rubro', value: e.rubro },
+                    { label: 'Tamaño', value: e.tamano },
+                    { label: 'Antigüedad', value: e.antiguedad },
+                ];
+                const gridHtml = `<div class="report-empresa-grid">${
+                    fields.map(f => `<div class="report-empresa-item">
+                        <div class="report-empresa-item-label">${f.label}</div>
+                        <div class="report-empresa-item-value">${f.value || '—'}</div>
+                    </div>`).join('')
+                }</div>`;
+                html += renderSection('apartment', 'Datos de la Empresa', gridHtml);
+            }
+
+            // 2. Situación actual
+            if (r.situacion_actual) {
+                html += renderSection('analytics', 'Situación Actual', `<p class="report-text-content">${r.situacion_actual}</p>`);
+            }
+
+            // 3. Necesidad principal
+            if (r.necesidad_principal) {
+                html += renderSection('lightbulb', 'Necesidad Principal', `<p class="report-text-content">${r.necesidad_principal}</p>`);
+            }
+
+            // 4. Desafíos
+            if (r.desafios && r.desafios.length) {
+                const items = r.desafios.map(d => `<li>${d}</li>`).join('');
+                html += renderSection('crisis_alert', 'Desafíos Identificados', `<ul class="report-list">${items}</ul>`);
+            }
+
+            // 5. Oportunidades
+            if (r.oportunidades && r.oportunidades.length) {
+                const cards = r.oportunidades.map(o => `
+                    <div class="report-oportunidad-card">
+                        <div class="report-oportunidad-card-title">${o.titulo}</div>
+                        <div class="report-oportunidad-card-desc">${o.descripcion}</div>
+                    </div>`).join('');
+                html += renderSection('rocket_launch', 'Áreas de Oportunidad', cards);
+            }
+
+            // 6. Soluciones MV
+            if (r.soluciones_mv) {
+                html += renderSection('handshake', 'Soluciones Maquina Virtual SPA', `<div class="report-mv-box">${r.soluciones_mv}</div>`);
+            }
+
+            // 7. Próximos pasos
+            if (r.proximos_pasos && r.proximos_pasos.length) {
+                const items = r.proximos_pasos.map(p => `<li>${p}</li>`).join('');
+                html += renderSection('checklist', 'Próximos Pasos Sugeridos', `<ul class="report-list report-pasos-list">${items}</ul>`);
+            }
+
+            reportBody.innerHTML = html;
+        }
+
         generateBtn.addEventListener('click', async () => {
             reportModal.classList.remove('hidden');
             reportModal.classList.add('flex');
             reportLoading.classList.remove('hidden');
-            reportText.textContent = '';
+            reportBody.innerHTML = '';
             generateBtn.disabled = true;
 
             try {
                 const res = await fetch(`${API_BASE}/report/${getOrCreateSession()}`);
                 if (!res.ok) throw new Error(await res.text());
                 const data = await res.json();
-                reportText.textContent = data.report;
+                renderReport(data.report);
             } catch (err) {
-                reportText.textContent = 'Error al generar el informe. Por favor, intenta de nuevo.';
+                reportBody.innerHTML = '<p class="text-red-400 text-sm">Error al generar el informe. Por favor, intenta de nuevo.</p>';
             } finally {
                 reportLoading.classList.add('hidden');
             }
@@ -479,7 +685,7 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             generateArea.classList.add('hidden');
             reportModal.classList.add('hidden');
             reportModal.classList.remove('flex');
-            reportText.textContent = '';
+            reportBody.innerHTML = '';
             userInput.disabled = false;
             sendBtn.disabled = false;
             startConsultation();
