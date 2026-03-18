@@ -59,4 +59,4 @@ setlocale(LC_NUMERIC, 'es_ES.utf8mb4');
 require_once __DIR__ . '/Conexion.php';
 
 // Controladores principales (solo sus definiciones de clase, no su ejecución)
-// require_once APP_ROOT . '/controladores/WebhookController.php';
+require_once APP_ROOT . '/controller/MailerController.php';

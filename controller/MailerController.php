@@ -2,7 +2,7 @@
 
 class MailerController {
 
-    private function enviarEmailEvaluacion($nombre, $email) {
+    public function enviarEmailEvaluacion() {
         // Ruta al autoload de Composer
         require_once __DIR__ . '/../vendor/autoload.php';
 

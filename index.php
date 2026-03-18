@@ -7,6 +7,7 @@ $action = $_GET['action'] ?? 'index';
 
 // Instanciar controladores y SessionManager
 $sessionManager = SessionManager::getInstance();
+$mailerController = new MailerController();
 
 switch ($action) {
     case 'inicio':
@@ -25,6 +26,11 @@ switch ($action) {
     case 'consulta':
         include VIEW_PATH . '/consulta.php';
         break;
+
+    case 'mailer':
+        $mailerController->enviarEmailEvaluacion();
+        break;
+        
 
     default:
         // Cargar datos para la vista de inicio por defecto
