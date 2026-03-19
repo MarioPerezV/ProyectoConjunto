@@ -6,19 +6,24 @@ $sessionManager = SessionManager::getInstance();
 
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/../../error_log.log');
+ini_set('error_log', __DIR__ . '/../error_log.log');
 error_reporting(E_ALL);
-// --- Definición de constantes ---
 
-// 1. Constantes de RUTA DE SERVIDOR (Prioritarias para cargar .env)
-define('APP_ROOT', realpath(dirname(__DIR__))); // Ruta al directorio /app absoluto
-define('SITE_ROOT', realpath(dirname(APP_ROOT))); // Ruta al directorio raíz absoluto
+// --- 1. Definición de constantes de RUTA FÍSICA ---
+// Se definen aquí para que puedan ser usadas inmediatamente, especialmente para encontrar el archivo .env
+
+// PROJECT_ROOT_PATH es la ruta raíz del proyecto (la carpeta 'vm').
+define('PROJECT_ROOT_PATH', realpath(dirname(__DIR__)));
+
+// Compatibilidad con código existente que pueda usar estas constantes.
+define('APP_ROOT', PROJECT_ROOT_PATH); 
+define('SITE_ROOT', dirname(PROJECT_ROOT_PATH)); // Directorio padre del proyecto.
 
 // 2. Cargar Autoload (Necesario para Dotenv y otras librerías)
-// require_once SITE_ROOT . '/vendor/autoload.php';
+// require_once PROJECT_ROOT_PATH . '/vendor/autoload.php';
 
 // 3. Cargar las variables de entorno desde el archivo .env
-$envFile = SITE_ROOT . '/.env';
+$envFile = PROJECT_ROOT_PATH . '/.env'; // El archivo .env debe estar en la raíz del proyecto ('vm').
 if (file_exists($envFile)) {
     try {
         // Primero intentamos cargar con putenv si es necesario para $_ENV
@@ -29,6 +34,9 @@ if (file_exists($envFile)) {
             list($name, $value) = explode('=', $line, 2);
             $name = trim($name);
             $value = trim($value);
+            // Limpieza de seguridad: Eliminar comillas simples o dobles al inicio y final
+            $value = trim($value, "'\"");
+            
             if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
                 putenv(sprintf('%s=%s', $name, $value));
                 $_ENV[$name] = $value;
@@ -44,14 +52,15 @@ else {
     error_log("No se encontró el archivo .env en: " . $envFile);
 }
 
-// 4. Constantes de RUTA WEB (Ahora dinámicas)
-// Se usa $_ENV['BASE_URL'] si existe, sino fallback a producción
-$baseUrl = $_ENV['BASE_URL'] ?? 'https://agenciagaby.com/mv';
+// 2. RUTA WEB (URL): Para el navegador (src, href, links)
+$baseUrl = $_ENV['BASE_URL'] ?? 'https://agenciagaby.com/vm';
 define('BASE_URL', rtrim($baseUrl, '/')); // Asegura que no tenga slash final extra
-define('CHATBOT_API_URL', $_ENV['CHATBOT_API_URL'] ?? 'http://localhost:8000/api/chat');
-define('ASSETS_PATH', BASE_URL . '/frontend/assets');
 
-define('VIEW_PATH', APP_ROOT . '/frontend/vistas'); // Ruta centralizada a las vistas
+define('CHATBOT_API_URL', $_ENV['CHATBOT_API_URL'] ?? 'https://91a8-204-199-128-4.ngrok-free.app/api/chat');
+
+// 3. ASSETS: Rutas web específicas para imágenes y estáticos
+define('ASSETS_PATH', BASE_URL . '/frontend/assets');
+define('VIEW_PATH', PROJECT_ROOT_PATH . '/frontend/vistas'); // Ruta física para incluir vistas
 
 setlocale(LC_NUMERIC, 'es_ES.utf8mb4');
 
@@ -59,4 +68,4 @@ setlocale(LC_NUMERIC, 'es_ES.utf8mb4');
 require_once __DIR__ . '/Conexion.php';
 
 // Controladores principales (solo sus definiciones de clase, no su ejecución)
-require_once APP_ROOT . '/controller/MailerController.php';
+require_once PROJECT_ROOT_PATH . '/controller/MailerController.php';

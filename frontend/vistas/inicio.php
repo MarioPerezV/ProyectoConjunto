@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Maquina Virtual | Desarrollador de Software de Alta Gama</title>
+    <title>Maquina Virtual | Desarrolladores de Software de Alta Gama</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
@@ -135,26 +135,26 @@
                     Una selección de nuestro trabajo más reciente, que abarca desde sistemas empresariales complejos hasta elegantes aplicaciones para consumidores.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">                
-                <!-- Project Card 1: MitigaRiesgo.cl -->
-                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col" 
-                    data-title="MitigaRiesgo.cl"
-                    data-description="Consultoría especializada en la implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST). Ayudamos a las empresas a cumplir con la Ley 16.744, reduciendo la accidentabilidad y mejorando la productividad."
-                    data-image="https://images.unsplash.com/photo-1581092921461-e760b1e393ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    data-tags='["Consultoría", "SGSST", "WordPress"]'
-                    data-url="https://mitigariesgo.cl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: ZenomyAI.com -->
+                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col"
+                    data-title="ZenomyAI.com"
+                    data-description="Lleva modelos locales y propios a tus productos con latencias bajas, privacidad por diseño y despliegue en tu infraestructura."
+                    data-image="<?= ASSETS_PATH . '/images/zenomyAI.webp' ?>"
+                    data-tags='["Inteligencia Artificial", "Cloud", "API"]'
+                    data-url="https://zenomyai.com">
                     <div class="aspect-video relative overflow-hidden">
-                        <img alt="Proyecto MitigaRiesgo.cl" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1581092921461-e760b1e393ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <img src="<?= ASSETS_PATH . '/images/zenomyAI.webp' ?>" alt="Proyecto ZenomyAI.com" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
                         <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <div class="flex gap-2 mb-4">
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Consultoría</span>
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">SGSST</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Inteligencia Artificial</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Cloud</span>
                         </div>
-                        <h4 class="text-xl font-bold text-white mb-3">MitigaRiesgo.cl</h4>
+                        <h4 class="text-xl font-bold text-white mb-3">ZenomyAI.com</h4>
                         <p class="text-slate-400 text-sm mb-6 flex-1">
-                            Consultoría en implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST) para empresas.
+                            Lleva modelos locales y propios a tus productos con latencias bajas, privacidad por diseño y despliegue en tu infraestructura.
                         </p>
                         <button class="open-project-modal inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all text-left">
                             Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -166,12 +166,11 @@
                 <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col"
                     data-title="AgenciaGaby.com"
                     data-description="Agencia de Diseño Web con Sistemas de Gestión en tiempo real que potencia la presencia online de negocios y emprendimientos."
-                    data-image="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     data-tags='["Sistemas de Gestión", "Desarrollo Web"]'
                     data-url="https://agenciagaby.com"
                     data-video-url="https://www.youtube.com/embed/EHNSFUIPL_4">
                     <div class="aspect-video relative overflow-hidden">
-                        <img alt="Proyecto AgenciaGaby.com" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <img src="<?= ASSETS_PATH . '/images/gaby.webp' ?>" alt="Proyecto AgenciaGaby.com" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
                         <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
@@ -189,25 +188,25 @@
                     </div>
                 </div>
 
-                <!-- Project Card 3: LaSerenaDenuncia.cl -->
-                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col"
-                    data-title="LaSerenaDenuncia.cl"
-                    data-description="Plataforma ciudadana para la comuna de La Serena. Permite a los vecinos reportar incidencias y problemas en la vía pública, fomentando la participación y colaborando con la gestión municipal para una ciudad más segura y limpia."
-                    data-image="https://images.unsplash.com/photo-1549877452-9c3e87a491a1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    data-tags='["Plataforma Ciudadana", "Participación", "Laravel"]'
-                    data-url="https://laserenadenuncia.cl">
+                <!-- Project Card 3: MitigaRiesgo.cl -->
+                <div class="project-card group bg-slate-900/30 rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all flex flex-col" 
+                    data-title="MitigaRiesgo.cl"
+                    data-description="Consultoría especializada en la implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST). Ayudamos a las empresas a cumplir con la Ley 16.744, reduciendo la accidentabilidad y mejorando la productividad."
+                    data-image="<?= ASSETS_PATH . '/images/mitigaRiesgo.webp' ?>"
+                    data-tags='["Consultoría", "SGSST", "WordPress"]'
+                    data-url="https://mitigariesgo.cl">
                     <div class="aspect-video relative overflow-hidden">
-                        <img alt="Proyecto LaSerenaDenuncia.cl" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1549877452-9c3e87a491a1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                        <img alt="Proyecto MitigaRiesgo.cl" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" src="<?= ASSETS_PATH . '/images/mitigaRiesgo.webp' ?>" />
                         <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/10 transition-colors"></div>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <div class="flex gap-2 mb-4">
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Plataforma Ciudadana</span>
-                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Laravel</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">Consultoría</span>
+                            <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-400 uppercase tracking-tighter">SGSST</span>
                         </div>
-                        <h4 class="text-xl font-bold text-white mb-3">LaSerenaDenuncia.cl</h4>
+                        <h4 class="text-xl font-bold text-white mb-3">MitigaRiesgo.cl</h4>
                         <p class="text-slate-400 text-sm mb-6 flex-1">
-                            Plataforma ciudadana para reportar incidencias en La Serena, fomentando la participación y mejorando la gestión municipal.
+                            Consultoría en implementación de Sistemas de Gestión de Seguridad y Salud en el Trabajo (SGSST) para empresas.
                         </p>
                         <button class="open-project-modal inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all text-left">
                             Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -270,8 +269,8 @@
                     <p class="text-slate-400 text-lg mb-8 max-w-md">
                         Actualmente abierto a nuevas oportunidades y colaboraciones interesantes. No dudes en contactarme por correo electrónico o cualquier plataforma social.
                     </p>
-                    <a class="text-2xl font-bold text-primary hover:underline underline-offset-8 transition-all" href="mailto:hello@devportfolio.com">
-                        hola@devportfolio.com
+                    <a class="text-2xl font-bold text-primary hover:underline underline-offset-8 transition-all" href="mailto:hola@maquinavirtual.com">
+                        hola@MaquinaVirtual.com
                     </a>
                 </div>
                 <div class="flex flex-col justify-end">
@@ -295,7 +294,7 @@
                 </div>
             </div>
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-                <p>© 2024 DevPortfolio. Todos los derechos reservados.</p>
+                <p>© 2024 MaquinaVirtual. Todos los derechos reservados.</p>
                 <div class="flex gap-8">
                     <a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
                     <a class="hover:text-white transition-colors" href="#">Términos de Servicio</a>
@@ -371,7 +370,12 @@
             } else {
                 modalVideoContainer.classList.add('hidden');
                 modalImageContainer.classList.remove('hidden');
-                modalImage.src = data.image;
+                
+                // Lógica mejorada: Si data-image existe, úsala. Si no, busca la etiqueta img dentro de la card.
+                const thumbnailImg = projectCard.querySelector('img');
+                const fallbackSrc = thumbnailImg ? thumbnailImg.src : '';
+                modalImage.src = data.image || fallbackSrc;
+                
                 modalImage.alt = `Vista previa del proyecto ${data.title}`;
             }
 

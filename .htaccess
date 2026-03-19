@@ -1,8 +1,14 @@
 RewriteEngine On
 
+# Excluir explícitamente el directorio /api de las reglas del controlador frontal.
+# Esto asegura que cualquier script dentro de /api/ se ejecute directamente.
+RewriteRule ^api/ - [L]
+
 # Si el archivo o directorio existe físicamente, servirlo directamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # De lo contrario, pasar todo a index.php como el parámetro 'action'
 RewriteRule ^(.*)$ index.php?action=$1 [QSA,L]
+
+# .htaccess solo afecta a las solicitudes que llegan a tu servidor (agenciagaby.com). No tiene ningún efecto sobre las llamadas que tu JavaScript hace a una URL externa como la de Ngrok (https://...ngrok-free.app/api/chat).

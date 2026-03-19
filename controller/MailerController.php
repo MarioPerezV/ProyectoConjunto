@@ -6,7 +6,14 @@ class MailerController {
         // Ruta al autoload de Composer
         require_once __DIR__ . '/../vendor/autoload.php';
 
-        $recipient_email = $email;
+        // Corrección: Obtener el email del POST o definir uno por defecto para evitar error de variable indefinida
+        $recipient_email = $_POST['email'] ?? null;
+
+        if (!$recipient_email) {
+            error_log('Error: No se proporcionó email para la evaluación.');
+            return;
+        }
+
         $subject = "Evaluación";
         $body = "";
 
