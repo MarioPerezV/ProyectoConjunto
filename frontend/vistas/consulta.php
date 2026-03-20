@@ -486,7 +486,9 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             
             setLoading(true);
             try {
-                const res = await fetch(`${API_BASE}/history/${sid}`);
+                const res = await fetch(`${API_BASE}/history/${sid}`, {
+                    headers: { 'ngrok-skip-browser-warning': '69420' }
+                });
                 if (res.ok) {
                     const data = await res.json();
                     if (data.messages && data.messages.length > 0) {
@@ -526,7 +528,7 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             try {
                 const res = await fetch(`${API_BASE}/chat`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '69420' },
                     body: JSON.stringify({ message, session_id: getOrCreateSession() })
                 });
                 if (!res.ok) throw new Error(await res.text());
@@ -646,7 +648,9 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             generateBtn.disabled = true;
 
             try {
-                const res = await fetch(`${API_BASE}/report/${getOrCreateSession()}`);
+                const res = await fetch(`${API_BASE}/report/${getOrCreateSession()}`, {
+                    headers: { 'ngrok-skip-browser-warning': '69420' }
+                });
                 if (!res.ok) throw new Error(await res.text());
                 const data = await res.json();
                 renderReport(data.report);
