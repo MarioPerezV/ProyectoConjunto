@@ -79,9 +79,26 @@
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="<?= BASE_URL ?>/consulta">Consulta</a>
                 <a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#contact">Contacto</a>
             </div>
-            <button class="bg-primary text-background-dark px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all">
+            <button class="hidden md:block bg-primary text-background-dark px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all">
                 Hablemos
             </button>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:text-primary transition-colors z-50">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-background-dark/95 backdrop-blur-xl border-b border-white/10 shadow-2xl animate-fade-in-up">
+            <div class="flex flex-col p-6 gap-4">
+                <a class="text-base font-medium text-slate-300 hover:text-primary transition-colors py-2 border-b border-white/5" href="#home">Inicio</a>
+                <a class="text-base font-medium text-slate-300 hover:text-primary transition-colors py-2 border-b border-white/5" href="#projects">Proyectos</a>
+                <a class="text-base font-medium text-slate-300 hover:text-primary transition-colors py-2 border-b border-white/5" href="#skills">Habilidades</a>
+                <a class="text-base font-medium text-slate-300 hover:text-primary transition-colors py-2 border-b border-white/5" href="<?= BASE_URL ?>/consulta">Consulta</a>
+                <a class="text-base font-medium text-slate-300 hover:text-primary transition-colors py-2 border-b border-white/5" href="#contact">Contacto</a>
+                <button class="mt-2 w-full bg-primary text-background-dark px-6 py-3 rounded font-bold text-sm hover:brightness-110 transition-all">Hablemos</button>
+            </div>
         </div>
     </nav>
 
@@ -346,6 +363,26 @@
         const modal = document.getElementById('project-modal');
         const closeModalButton = document.getElementById('close-modal-button');
         const openModalButtons = document.querySelectorAll('.open-project-modal');
+        
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileBtn.querySelector('span');
+                icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileBtn.querySelector('span').textContent = 'menu';
+                });
+            });
+        }
+
         if (!modal || !closeModalButton || openModalButtons.length === 0) return;
 
         const modalTitle = document.getElementById('modal-title');        
