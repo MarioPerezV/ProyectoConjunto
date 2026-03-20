@@ -382,15 +382,25 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             </div>
 
             <!-- Modal Footer -->
-            <div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50 flex flex-col sm:flex-row justify-end gap-3 shrink-0">
-                <button id="email-btn" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-bold text-sm transition-all border border-slate-700">
-                    <span class="material-symbols-outlined text-lg">mail</span>
-                    Enviar por correo
-                </button>
-                <button id="download-btn-placeholder" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-background-dark rounded-lg font-bold text-sm hover:brightness-110 transition-all">
-                    <span class="material-symbols-outlined text-lg">download</span>
-                    Descargar PDF
-                </button>
+            <div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50 flex flex-col md:flex-row items-center justify-between gap-4 shrink-0">
+                <div class="flex-1 w-full md:max-w-md">
+                    <div id="email-input-container" class="relative">
+                        <input type="email" id="report-email" 
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition-all placeholder:text-slate-500" 
+                            placeholder="Tu correo electrónico">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">mail</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button id="email-btn" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-bold text-sm transition-all border border-slate-700 disabled:opacity-50">
+                        <span id="email-btn-icon" class="material-symbols-outlined text-lg">send</span>
+                        <span id="email-btn-text">Enviar por correo</span>
+                    </button>
+                    <button id="download-btn-placeholder" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-background-dark rounded-lg font-bold text-sm hover:brightness-110 transition-all">
+                        <span class="material-symbols-outlined text-lg">download</span>
+                        Descargar PDF
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -673,9 +683,69 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
             if (e.target === reportModal) closeModal.click();
         });
 
-        // Email button placeholder
-        emailBtn.addEventListener('click', () => {
-            alert('Funcionalidad de envío por correo: Esta es una opción placeholder. En una versión futura, esto enviará el informe PDF a tu casilla de correo.');
+        // Email button logic
+        emailBtn.addEventListener('click', async () => {
+            const email = document.getElementById('report-email').value.trim();
+            if (!email) {
+                alert('Por favor, ingresa un correo electrónico.');
+                return;
+            }
+
+            // Validar formato básico de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, ingresa un correo electrónico válido.');
+                return;
+            }
+
+            const reportHtml = reportBody.innerHTML;
+            const btnText = document.getElementById('email-btn-text');
+            const btnIcon = document.getElementById('email-btn-icon');
+
+            // UI Feedback: Loading
+            emailBtn.disabled = true;
+            btnText.textContent = 'Enviando...';
+            btnIcon.textContent = 'hourglass_empty';
+
+            try {
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('report_html', reportHtml);
+                formData.append('subject', 'Tu Informe de Necesidades - Maquina Virtual SPA');
+
+                const res = await fetch('<?= BASE_URL ?>/index.php?action=mailer', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    btnText.textContent = '¡Enviado!';
+                    btnIcon.textContent = 'check_circle';
+                    emailBtn.classList.remove('bg-slate-800');
+                    emailBtn.classList.add('bg-green-600', 'border-green-500');
+                    
+                    setTimeout(() => {
+                        btnText.textContent = 'Enviar por correo';
+                        btnIcon.textContent = 'send';
+                        emailBtn.disabled = false;
+                        emailBtn.classList.add('bg-slate-800');
+                        emailBtn.classList.remove('bg-green-600', 'border-green-500');
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Error al enviar el correo');
+                }
+            } catch (err) {
+                alert('No se pudo enviar el correo: ' + err.message);
+                btnText.textContent = 'Error al enviar';
+                btnIcon.textContent = 'error';
+                setTimeout(() => {
+                    btnText.textContent = 'Enviar por correo';
+                    btnIcon.textContent = 'send';
+                    emailBtn.disabled = false;
+                }, 3000);
+            }
         });
 
         // ---- Restart ----
