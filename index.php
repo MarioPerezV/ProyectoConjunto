@@ -7,7 +7,6 @@ $action = $_GET['action'] ?? 'index';
 
 // Instanciar controladores y SessionManager
 $sessionManager = SessionManager::getInstance();
-$mailerController = new MailerController();
 
 switch ($action) {
     case 'inicio':
@@ -28,6 +27,7 @@ switch ($action) {
         break;
 
     case 'mailer':
+        $mailerController = new MailerController();
         $mailerController->enviarEmailEvaluacion();
         break;
         

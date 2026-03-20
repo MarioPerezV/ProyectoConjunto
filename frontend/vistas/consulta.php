@@ -340,7 +340,7 @@ $consultationApiUrl = $_ENV['CONSULTATION_API_URL'] ?? 'http://localhost:8000/ap
                 </div>
             </div>
 
-            <!-- Generate Report button (shown when report_ready) -->
+            <!-- Generate Report button (shown when report_ready) --> 
             <div id="generate-report-area" class="hidden">
                 <button id="generate-report-btn"
                     class="btn-glow w-full py-4 bg-primary text-background-dark rounded-xl font-extrabold text-lg flex items-center justify-center gap-3 hover:brightness-110 transition-all active:scale-95">

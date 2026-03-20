@@ -26,7 +26,7 @@ class MailerController {
             $mail->Port = 465;
             $mail->IsHTML(true);
             $mail->CharSet = 'UTF-8';
-			// Obtenemos las credenciales del entorno de forma segura.
+			// Obtenemos las credenciales del entorno de forma segura. 
             $mail->Username = $_ENV['SMTP_USER'] ?? 'hola@agenciagaby.com';
             $mail->Password = $_ENV['SMTP_PASSWORD'] ?? '';
             $mail->SetFrom("hola@agenciagaby.com", "Maquina Virtual SpA");
